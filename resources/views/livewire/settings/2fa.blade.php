@@ -13,8 +13,8 @@ new class extends Component {
         if($this->user->google2fa_secret){
             $this->secret = $this->user->google2fa_secret; 
         }else{
+            $this->secret = $google2fa->generateSecretKey() ;
         }
-        $this->secret = $google2fa->generateSecretKey() ;
         $this->urlQRCode = $google2fa->getQRCodeInline(
             config("app.name"),
             $this->user->email,
